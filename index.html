@@ -636,35 +636,6 @@
   .footer-copy { font-size: 0.78rem; margin-top: 1.5rem; }
 
   /* ── POPUP ── */
-  .popup-overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 200;
-    display: none; align-items: center; justify-content: center;
-    backdrop-filter: blur(4px);
-  }
-  .popup-overlay.visible { display: flex; }
-  .popup {
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 2.5rem;
-    max-width: 420px; width: 90%;
-    text-align: center;
-    box-shadow: var(--shadow-lg);
-    position: relative;
-    animation: popIn 0.3s ease;
-  }
-  @keyframes popIn { from{transform:scale(0.9);opacity:0} to{transform:scale(1);opacity:1} }
-  .popup-close {
-    position: absolute; top: 1rem; right: 1rem;
-    background: none; border: none; font-size: 1.3rem;
-    cursor: pointer; color: var(--gray-light);
-  }
-  .popup-close:hover { color: var(--charcoal); }
-  .popup h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 0.5rem; }
-  .popup p { font-size: 0.9rem; color: var(--gray); margin-bottom: 1.2rem; }
-  .popup .btn { width: 100%; justify-content: center; }
-
   /* ── TOAST ── */
   .toast {
     position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px);
@@ -1152,16 +1123,6 @@
   <div class="footer-copy">© 2026 LuxeNails. Все права защищены. Краснодар.</div>
 </footer>
 
-<!-- POPUP -->
-<div class="popup-overlay" id="exitPopup">
-  <div class="popup">
-    <button class="popup-close" onclick="closePopup()" aria-label="Закрыть окно">✕</button>
-    <h3>Подождите! 🎁</h3>
-    <p>Забронируйте следующий визит прямо сейчас и получите скидку 10% на маникюр + покрытие гель-лаком.</p>
-    <a href="#booking" class="btn btn-primary" onclick="closePopup()">Получить скидку 10%</a>
-  </div>
-</div>
-
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
@@ -1296,28 +1257,6 @@
 
     return false;
   }
-
-  // Exit popup — показываем при скролле на 50% или через 30 сек, но не более 1 раза
-  let popupShown = false;
-  function showPopup() {
-    if (popupShown) return;
-    popupShown = true;
-    document.getElementById('exitPopup').classList.add('visible');
-  }
-  // Триггер по скроллу на 50%
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > document.documentElement.scrollHeight * 0.5) {
-      showPopup();
-    }
-  });
-  // Триггер через 30 секунд
-  setTimeout(showPopup, 30000);
-  function closePopup() {
-    document.getElementById('exitPopup').classList.remove('visible');
-  }
-  document.getElementById('exitPopup').addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) closePopup();
-  });
 
   // Discount timer — обратный отсчёт 2 часа
   function startTimer() {
