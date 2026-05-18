@@ -1045,15 +1045,15 @@
     <form id="booking-form" onsubmit="return handleBooking(event)" aria-label="Форма записи на маникюр">
       <div class="form-group">
         <label>Ваше имя</label>
-        <input type="text" placeholder="Как к вам обращаться?" required>
+        <input type="text" name="name" placeholder="Как к вам обращаться?" required>
       </div>
       <div class="form-group">
         <label>Телефон</label>
-        <input type="tel" placeholder="+7 (___) ___-__-__" required pattern="[\+]?[0-9\s\-\(\)]{10,}" title="Введите номер телефона, минимум 10 цифр">
+        <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required pattern="[\+]?[0-9\s\-\(\)]{10,}" title="Введите номер телефона, минимум 10 цифр">
       </div>
       <div class="form-group">
         <label>Мастер</label>
-        <select>
+        <select name="master">
           <option value="">Выберите мастера</option>
           <option>Алина (старший мастер)</option>
           <option>Мария</option>
@@ -1063,7 +1063,7 @@
       </div>
       <div class="form-group">
         <label>Услуга</label>
-        <select>
+        <select name="service">
           <option value="">Выберите услугу</option>
           <option>Маникюр + покрытие гель-лак — 990 ₽</option>
           <option>Маникюр + френч — 1 500 ₽</option>
@@ -1074,7 +1074,7 @@
       </div>
       <div class="form-group">
         <label>Удобная дата и время</label>
-        <input type="datetime-local">
+        <input type="datetime-local" name="datetime">
       </div>
       <button type="submit" class="btn btn-primary">Записаться</button>
     </form>
@@ -1264,13 +1264,12 @@
       '✨ Услуга: ' + (service || 'Не выбрана') + '\n' +
       '📅 Дата/время: ' + (datetime || 'Не указано');
 
-    // === НАСТРОЙ СВОИ ДАННЫЕ ЗДЕСЬ ===
-    const BOT_TOKEN = 'YOUR_BOT_TOKEN';
-    const CHAT_ID = 'YOUR_CHAT_ID';
-    // ==================================
+    // === Telegram Bot ===
+    const BOT_TOKEN = '8623631873:AAFn6YKcTo-GWeNCmOlXjP_g-YQdg6TUID4';
+    const CHAT_ID = '2086769195';
+    // ====================
 
-    if (BOT_TOKEN === 'YOUR_BOT_TOKEN' || CHAT_ID === 'YOUR_CHAT_ID') {
-      // Режим отладки
+    if (false) {
       showToast('Заявка принята! Подставь BOT_TOKEN и CHAT_ID для отправки в Telegram.', '');
       form.reset();
       return false;
